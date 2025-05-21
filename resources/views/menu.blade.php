@@ -8,10 +8,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{-- ✅ Navigatie --}}
+  {{--  Navigatie --}}
   @include('partials.nav')
 
-  {{-- ✅ Menu --}}
+  {{--  Menu --}}
   <main class="flex-grow">
     <section id="menu" class="max-w-6xl mx-auto py-12 px-4">
       <h3 class="text-2xl font-bold mb-6 text-center text-gray-700">Koffiemenu</h3>
@@ -56,7 +56,7 @@
     </section>
   </main>
 
-  {{-- ✅ Footer blijft onderaan --}}
+  {{-- footer--}}
   <footer class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto text-center text-sm text-black-500">
       &copy; {{ date('Y') }} Mijn Café. Mijn Café - Project Backend Chaud-ry Kiran

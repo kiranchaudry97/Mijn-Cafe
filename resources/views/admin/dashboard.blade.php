@@ -8,10 +8,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{-- ✅ Navigatie --}}
+  {{--  Navigatie --}}
   @include('partials.nav')
 
-  {{-- ✅ Hoofdinhoud --}}
+  {{-- Hoofdinhoud --}}
   <main class="flex-grow py-12">
     <div class="max-w-3xl mx-auto bg-white p-8 rounded shadow text-center space-y-6">
       <h2 class="text-2xl font-bold text-gray-800">👑 Admin Dashboard</h2>
@@ -48,7 +48,7 @@
     </div>
   </main>
 
-  {{-- ✅ Footer --}}
+  {{-- Footer --}}
   <footer class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
       &copy; {{ date('Y') }} Mijn Café. Mijn Café - Project Backend Chaud-ry Kiran

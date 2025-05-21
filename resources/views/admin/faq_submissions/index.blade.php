@@ -8,10 +8,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{-- ✅ Navigatie --}}
+  {{-- Navigatie --}}
   @include('partials.nav')
 
-  {{-- ✅ Hoofdinhoud --}}
+  {{--  Hoofdinhoud --}}
   <main class="flex-grow p-6 max-w-5xl mx-auto">
     <h1 class="text-xl font-bold text-center text-gray-800 mb-6">📥 Ingezonden Vragen</h1>
 
@@ -26,13 +26,13 @@
       <p class="text-gray-600 text-center">Nog geen vragen ingezonden.</p>
     @endforelse
 
-    {{-- ✅ Paginatie --}}
+    {{--  Paginatie --}}
     <div class="mt-6">
       {{ $submissions->links() }}
     </div>
   </main>
 
-  {{-- ✅ Footer --}}
+  {{-- Footer --}}
   <footer class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
       &copy; {{ date('Y') }} Mijn Café. Mijn Café - Project Backend Chaud-ry Kiran

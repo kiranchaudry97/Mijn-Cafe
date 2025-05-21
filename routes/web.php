@@ -17,11 +17,7 @@ use App\Models\FaqCategory;
 use App\Models\Coffee;
 use App\Models\FaqSubmission;
 
-/*
-|--------------------------------------------------------------------------
-| Publieke Routes
-|--------------------------------------------------------------------------
-*/
+/* Publieke Routes*/
 Route::get('/', function () {
     $coffees = Coffee::all();
     $categories = FaqCategory::with('faqs')->get();
@@ -88,18 +84,10 @@ Route::post('/contact', function (Request $request) {
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/*
-|--------------------------------------------------------------------------
-| Auth Routes
-|--------------------------------------------------------------------------
-*/
+/* Auth Routes */
 require __DIR__.'/auth.php';
 
-/*
-|--------------------------------------------------------------------------
-| Gebruiker-routes (auth + verified)
-|--------------------------------------------------------------------------
-*/
+/* Gebruiker-routes */
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
@@ -114,18 +102,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/bestelling/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Admin-routes (auth only)
-|--------------------------------------------------------------------------
-*/
+/*- Admin-routes ( */
 Route::prefix('admin')
     ->name('admin.')
     ->middleware('auth')
     ->group(function () {
         Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
 
-        // Nieuwsbeheer
+        // *Nieuwsbeheer*/
         Route::resource('news', NewsController::class)
             ->except(['show'])
             ->names([

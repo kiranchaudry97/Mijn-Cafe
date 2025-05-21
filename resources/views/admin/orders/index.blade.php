@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{-- ✅ Navigatie --}}
+  {{--  Navigatie --}}
   <nav class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
       <h1 class="text-2xl font-bold text-gray-800">☕ Mijn Café</h1>
@@ -29,7 +29,7 @@
     </div>
   </nav>
 
-  {{-- ✅ Hoofdinhoud --}}
+  {{--  Hoofdinhoud --}}
   <main class="flex-grow">
     {{-- Titel --}}
     <div class="flex flex-col items-center mt-6 mb-4 text-center">
@@ -66,7 +66,7 @@
     </div>
   </main>
 
-  {{-- ✅ Footer --}}
+  {{-- Footer --}}
   <footer class="bg-white shadow p-4">
     <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
       &copy; {{ date('Y') }} Mijn Café. Mijn Café - Project Backend Chaud-ry Kiran

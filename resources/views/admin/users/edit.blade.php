@@ -8,10 +8,10 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{-- ✅ Navigatie --}}
+  {{--  Navigatie --}}
   @include('partials.nav')
 
-  {{-- ✅ Hoofdinhoud --}}
+  {{-- Hoofdinhoud --}}
   <main class="flex-grow flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-white p-6 rounded shadow">
       <h1 class="text-2xl font-bold mb-6 text-center">✏️ Gebruiker wijzigen</h1>
