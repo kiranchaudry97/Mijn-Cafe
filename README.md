@@ -1,61 +1,156 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mijn Café
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Een Laravel 12 project voor het vak *Backend Web* – een dynamische website voor een koffiebar met gebruikersbeheer, nieuws, bestellingen en meer.
 
-## About Laravel
+# Inhoud
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Beschrijving](#beschrijving)
+- [Functionaliteiten](#functionaliteiten)
+- [Installatie](#installatie)
+- [Gebruikersaccounts](#gebruikersaccounts)
+- [Screenshots](#screenshots)
+- [Bronnen](#bronnen)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Beschrijving
 
-## Learning Laravel
+Mijn Café is een full-stack Laravel webapplicatie gebouwd als eindproject voor het vak Backend Web. De website combineert gebruikersauthenticatie, profielbeheer, koffiebestellingen, nieuwsbeheer, FAQ-beheer en een contactformulier in een gebruiksvriendelijke en overzichtelijke interface.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Gebruikers kunnen inloggen, hun profiel beheren, bestellingen plaatsen en vragen stellen via het contactformulier of FAQ. Admins hebben extra rechten zoals het beheren van gebruikers, het toekennen van adminrechten, het verwerken van contactberichten, het beheren van FAQ’s en het aanmaken van nieuwsitems die op de homepage verschijnen.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Functionaliteiten
 
-## Laravel Sponsors
+# Algemene functies
+- *Homepage met dynamische inhoud:* toont koffiesoorten (met afbeelding), recente nieuwsitems en veelgestelde vragen.
+- *Contactformulier:* bezoekers kunnen berichten sturen; admins ontvangen deze via e-mail.
+- *Publieke profielpagina’s:* elke gebruiker heeft een publiek profiel met foto, bio en info.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Authenticatie & Gebruikersbeheer
+- *Registratie en login* met wachtwoordbeveiliging en ‘wachtwoord vergeten’-functie.
+- *Gebruikersdashboard* na inloggen.
+- *Profiel aanpassen:* naam, gebruikersnaam, profielfoto, bio, verjaardag.
+- *Admins kunnen gebruikers beheren* (aanmaken, wijzigen, verwijderen).
+- *Adminrechten toekennen/intrekken*.
 
-### Premium Partners
+# Bestellingen
+- *Koffies bestellen:* via een dynamisch menu.
+- *Mijn bestellingen:* overzicht voor elke gebruiker.
+- *Bestelbeheer:* admins kunnen alle bestellingen bekijken.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+# Nieuwsbeheer
+- *Nieuws aanmaken, bewerken, verwijderen* door admins.
+- *Nieuwsitems bevatten:* titel, content, afbeelding, publicatiedatum, auteur.
+- *Nieuwsweergave op homepage* en aparte nieuwssectie.
+- *Detailpagina per nieuwsitem.*
 
-## Contributing
+# FAQ-beheer
+- *Adminbeheer:* beheer van categorieën en Q&A.
+- *FAQ’s zichtbaar op homepage* gegroepeerd per categorie.
+- *Bezoekers kunnen vragen insturen*, zichtbaar voor admin in dashboard.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# Installatie
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. *Clone deze repository:*
 
-## Security Vulnerabilities
+   ```bash
+   git clone https://github.com/kiranchaudry97/Mijn-Cafe.git
+   cd Mijn-Cafe
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Afbeeldingen 
+# Hoofd pagina
+# inhoud welkom bericht met menu en de item die ze kunnen bestellen.
 
-## License
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20page%20.png)
+# veelgestelde vragen kunnen weergeven
+ 
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20inhoud%20veelgestelde%20vragen%20page%20.png)
+# Veelgestelde vragen kunne stellen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20en%20vraagstelling%20page%20.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Menu pagina 
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/menu%20pagina.png)
+ 
+# Contactinfo pagina
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20info%20pagina%20.png)
+ 
+# formulier kunnen versturen 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20info%20pagina%20met%20het%20verzenden%20van%20bericht%20.png)
+
+# Admin login
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/login%20als%20admin%20.png)
+
+# Admin dashboard
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/admin%20dashboard.png)
+
+# Admin kunnen nieuws beheer kunnen weergeven  en kunnen toevoegen 
+ 
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuws%20beheer%20toegevoegd%20kunnen%20weergeven.png)
+    ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuws%20beheer%20kunnen%20aanmaken%20.png)
+     
+
+# Admin user gebruikers kunnen weergeven  en zich kunnen aanpassen
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/admin%20users%20gebruikes%20kunnen%20weergeven.png)
+
+
+# Admin kunnen bestelling zien van de gebruikers 
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/winkelmand%20het%20gescelecteerde%20product.png)
+
+
+
+# admin kunnen contact inzeddingen zien 
+ 
+
+
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20inzeidingen%20kunnen%20bekijken.png)
+
+
+
+
+# Als Admin faq pagina kunnen beheren  en kunnen toevoegen en weergeven op de hoofdpagina
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuw%20faq%20item%20kunnen%20toevoegen.png)
+
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuw%20faq%20item%20kunnen%20weergeven%20van%20nieuw%20toegevoegde%20item.png)
+
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20faq%20item%20kunnen%20weergeven%20in%20welcome%20page.png)
+
+
+# log gegevens van gebruiker 
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/login%20als%20admin%20.png)
+
+
+# gebruikers dashboard 
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/gebruikers%20dashboard%20overzicht.png)
+# gebruikers hun profile kunnen wijzigen 
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/gebruikers%20kunnen%20wijzigen.png)
+
+
+# bestellingen kunnen nemen via de mijn bestelling 
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20bestelling%20page%20de%20bestelling%20kunnen%20aanmaken.png)
+
+# nieuwe gebruikers kunnen aanmaken 
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20gebruikers%20aanmaken.png)
+
+# profile kunnen bewereken als admin 
+ 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/profile%20%20page%20ingeven%20van%20gegevens.png)
+# wacthwoord kunnen wjizingen of account kunnen vewijderen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/profile%20page%20wachtwoord%20kunnen%20wijzingen%20of%20account%20verwijderen.png)
+
+
+
+
+
+
+
+
