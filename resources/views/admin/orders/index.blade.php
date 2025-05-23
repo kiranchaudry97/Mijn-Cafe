@@ -8,26 +8,8 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{--  Navigatie --}}
-  <nav class="bg-white shadow p-4">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-      <h1 class="text-2xl font-bold text-gray-800">☕ Mijn Café</h1>
-      <ul class="flex flex-wrap justify-center md:justify-end space-x-6 text-sm font-semibold">
-        <li><a href="{{ route('home') }}" class="hover:text-gray-500">Home</a></li>
-        <li><a href="{{ route('menu') }}" class="hover:text-gray-500">Menu</a></li>
-        <li><a href="{{ route('contact') }}" class="hover:text-gray-500">Contact</a></li>
-        <li><a href="{{ route('orders.create') }}" class="hover:text-gray-500">Nieuwe Bestelling</a></li>
-        @auth
-          <li>
-            <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <button type="submit" class="hover:text-red-500">Uitloggen</button>
-            </form>
-          </li>
-        @endauth
-      </ul>
-    </div>
-  </nav>
+  {{-- Navigatie --}}
+  @include('partials.nav')
 
   {{--  Hoofdinhoud --}}
   <main class="flex-grow">

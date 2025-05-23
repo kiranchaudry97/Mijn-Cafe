@@ -57,11 +57,6 @@
   </main>
 
    {{-- Footer --}}
-
-  <footer class="bg-white shadow p-4">
-    <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
-      &copy; {{ date('Y') }} Mijn Café. Mijn Café - Project Backend Chaud-ry Kiran.
-    </div>
-  </footer>
+@include('partials.footer')
 </body>
 </html>

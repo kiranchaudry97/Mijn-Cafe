@@ -24,4 +24,6 @@
             </x-primary-button>
         </div>
     </form>
+    {{-- Footer --}}
+@include('partials.footer')
 </x-guest-layout>
