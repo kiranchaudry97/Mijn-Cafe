@@ -36,7 +36,7 @@
         <h2 class="text-3xl font-bold mb-6">☕ Onze Koffiesoorten</h2>
         <p class="text-gray-600 mb-10">Bekijk ons assortiment en bestel jouw favoriet</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-start">
           @foreach ($coffees as $coffee)
             <div class="border rounded shadow p-6 bg-gray-50 text-center">
               @if($coffee->image_path && file_exists(public_path('storage/' . $coffee->image_path)))
@@ -64,25 +64,29 @@
     @php use Illuminate\Support\Str; @endphp
     @if($newsItems->count())
     <section class="py-16 bg-gray-100">
-      <div class="max-w-5xl mx-auto px-4">
+      <div class="max-w-5xl mx-auto px-4" >
+
+
+      
         <h2 class="text-3xl font-bold text-center mb-6">📰 Laatste Nieuws</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class=" max-w-5xl  place-items-center">
           @foreach ($newsItems as $news)
-            <div class="bg-white rounded shadow p-4">
+            <div class="bg-white rounded shadow p-6 mx-auto w-full max-w-xl">
               @if($news->image_path && file_exists(public_path('storage/' . $news->image_path)))
                 <img src="{{ asset('storage/' . $news->image_path) }}"
                      alt="{{ $news->title }}"
                      class="mb-4 w-full h-40 object-cover rounded">
               @endif
-              <h3 class="text-xl font-semibold text-gray-800">{{ $news->title }}</h3>
-              <p class="text-sm text-gray-600 mb-2">
+              <h3 class="text-xl font-semibold text-gray-800 text-center">{{ $news->title }}</h3>
+              <p class="text-sm text-gray-600 mb-2 text-center">
                 Gepubliceerd op {{ \Carbon\Carbon::parse($news->published_at)->format('d/m/Y') }}
               </p>
-              <p class="text-gray-700 text-sm line-clamp-3">
+              <p class="text-gray-700 text-sm line-clamp-3 text-center">
                 {{ Str::limit(strip_tags($news->content), 100) }}
               </p>
-              <a href="{{ route('news.show', $news) }}"
-                 class="inline-block mt-3 text-blue-600 hover:underline">
+              <div class="text-center mt-4">
+              <a href="{{ route('news.show', $news) }}" class="inline-block mt-3 text-blue-600 hover:underline">
                 Lees meer →
               </a>
             </div>
