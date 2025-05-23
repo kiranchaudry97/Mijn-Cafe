@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CommentController;
+
+
 use App\Mail\ContactFormSubmitted;
 
 use App\Models\ContactSubmission;
@@ -17,7 +20,7 @@ use App\Models\FaqCategory;
 use App\Models\Coffee;
 use App\Models\FaqSubmission;
 
-/* Publieke Routes*/
+/* Publieke Routes */
 Route::get('/', function () {
     $coffees = Coffee::all();
     $categories = FaqCategory::with('faqs')->get();
@@ -65,6 +68,10 @@ Route::get('/nieuws/{news}', function (News $news) {
     return view('news.show', compact('news'));
 })->name('news.show');
 
+Route::post('/nieuws/{news}/comment', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('comments.store');
+
 Route::get('/contact', fn() => view('contact'))->name('contact');
 
 Route::post('/contact', function (Request $request) {
@@ -102,14 +109,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/bestelling/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
-/*- Admin-routes ( */
+/* Admin-routes */
 Route::prefix('admin')
     ->name('admin.')
     ->middleware('auth')
     ->group(function () {
         Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
 
-        // *Nieuwsbeheer*/
+        // Nieuwsbeheer
         Route::resource('news', NewsController::class)
             ->except(['show'])
             ->names([
@@ -120,6 +127,10 @@ Route::prefix('admin')
                 'update'  => 'news.update',
                 'destroy' => 'news.destroy',
             ]);
+
+        Route::get('news/{news}', function (News $news) {
+            return view('admin.news.index', compact('news'));
+        })->name('news.show'); // Je mag dit hernoemen naar admin.news.show indien verwarring ontstaat
 
         // FAQ-beheer
         Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
