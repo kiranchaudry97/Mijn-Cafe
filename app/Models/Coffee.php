@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CoffeeReview;
 
 class Coffee extends Model
 {
@@ -14,4 +15,9 @@ class Coffee extends Model
         'description',
         'price',
     ];
+
+    public function reviews()
+{
+    return $this->hasMany(CoffeeReview::class);
+}
 }

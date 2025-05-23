@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
-  {{--  Navigatie --}}
+  {{-- Navigatie --}}
   @include('partials.nav')
 
   {{-- Hoofdinhoud --}}
@@ -32,6 +32,9 @@
         </li>
         <li class="p-4 bg-gray-50 rounded shadow">
           <a href="{{ route('admin.faq.index') }}" class="font-semibold hover:underline">❓ Beheer FAQ</a>
+        </li>
+        <li class="p-4 bg-gray-50 rounded shadow">
+          <a href="{{ route('admin.comments.index') }}" class="font-semibold hover:underline">💬 Beheer Reacties</a>
         </li>
       </ul>
 

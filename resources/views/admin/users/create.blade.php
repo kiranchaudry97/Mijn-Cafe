@@ -66,14 +66,12 @@
         </div>
       </form>
     </div>
+  </main>
 
-    {{-- Terug naar overzicht --}}
+   {{-- Terug naar overzicht --}}
       <div class="text-center mt-6">
         <a href="{{ route('admin.dashboard') }}" class="text-gray-700 underline hover:text-gray-900">
           ← Terug naar overzicht
-        </a>
-      </div>
-  </main>
 
   {{--  Footer --}}
   <footer class="bg-white shadow p-4">

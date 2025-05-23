@@ -8,12 +8,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\CommentAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\CoffeeReviewController;
 
 use App\Mail\ContactFormSubmitted;
-
 use App\Models\ContactSubmission;
 use App\Models\News;
 use App\Models\FaqCategory;
@@ -34,9 +34,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/menu', function () {
-    $coffees = Coffee::all();
+    $coffees = Coffee::with('reviews.user')->get();
     return view('menu', compact('coffees'));
 })->name('menu');
+
+Route::post('/coffee/{coffee}/review', [CoffeeReviewController::class, 'store'])
+    ->middleware('auth')
+    ->name('coffee.reviews.store');
 
 Route::get('/faq', function () {
     $categories = FaqCategory::with('faqs')->get();
@@ -130,7 +134,7 @@ Route::prefix('admin')
 
         Route::get('news/{news}', function (News $news) {
             return view('admin.news.index', compact('news'));
-        })->name('news.show'); // Je mag dit hernoemen naar admin.news.show indien verwarring ontstaat
+        })->name('news.show');
 
         // FAQ-beheer
         Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
@@ -172,4 +176,8 @@ Route::prefix('admin')
                 'update'  => 'users.update',
                 'destroy' => 'users.destroy',
             ]);
+
+        // Reactiebeheer (NIEUW)
+        Route::get('comments', [CommentAdminController::class, 'index'])->name('comments.index');
+        Route::delete('comments/{comment}', [CommentAdminController::class, 'destroy'])->name('comments.destroy');
     });
