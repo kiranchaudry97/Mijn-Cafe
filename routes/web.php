@@ -21,10 +21,7 @@ use App\Models\Coffee;
 use App\Models\FaqSubmission;
 use App\Models\User;
 
-/*
- Publieke routes
-
-*/
+/* Publieke routes */
 
 Route::get('/', function () {
     $coffees = Coffee::all();
@@ -94,11 +91,7 @@ Route::post('/contact', function (Request $request) {
     return back()->with('success', 'Je bericht is verzonden!');
 })->name('contact.send');
 
-/*
-|
-| Publieke gebruikersprofielen
-
-*/
+/* Publieke gebruikersprofielen */
 
 Route::get('/gebruikers', function () {
     $users = User::select('id', 'name', 'username', 'avatar_path')->paginate(12);
@@ -107,18 +100,11 @@ Route::get('/gebruikers', function () {
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/*
-
-Auth routes
-
-*/
+/* Auth routes */
 
 require __DIR__.'/auth.php';
 
-/*
- Gebruiker routes
-
-*/
+/* Gebruikersroutes (auth + verified) */
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => view('users.dashboard'))->name('dashboard');
@@ -133,8 +119,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/bestelling/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
-/*| Admin routes
- */
+/* Admin routes */
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
 

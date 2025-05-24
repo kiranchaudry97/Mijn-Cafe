@@ -4,6 +4,7 @@
     <ul class="flex flex-wrap justify-center md:justify-end space-x-6 text-sm font-semibold">
       <li><a href="{{ route('home') }}" class="hover:text-white hover:underline decoration-white">Home</a></li>
       <li><a href="{{ route('menu') }}" class="hover:text-white hover:underline decoration-white">Menu</a></li>
+     <li><a href="{{ route('faq.index') }}" class="hover:text-white hover:underline decoration-white">FAQ</a></li>
       <li><a href="{{ route('contact') }}" class="hover:text-white hover:underline decoration-white">Contact</a></li>
 
       @auth
