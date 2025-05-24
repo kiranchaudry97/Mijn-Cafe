@@ -19,8 +19,13 @@ use App\Models\News;
 use App\Models\FaqCategory;
 use App\Models\Coffee;
 use App\Models\FaqSubmission;
+use App\Models\User;
 
-/* Publieke Routes */
+/*
+ Publieke routes
+
+*/
+
 Route::get('/', function () {
     $coffees = Coffee::all();
     $categories = FaqCategory::with('faqs')->get();
@@ -55,8 +60,7 @@ Route::post('/faq/submit', function (Request $request) {
     ]);
 
     FaqSubmission::create($data);
-
-    return redirect()->route('faq.index')->with('success', 'Bedankt voor je vraag! We nemen zo snel mogelijk contact op.');
+    return redirect()->route('faq.index')->with('success', 'Bedankt voor je vraag!');
 })->name('faq.submit');
 
 Route::get('/nieuws', function () {
@@ -76,7 +80,7 @@ Route::post('/nieuws/{news}/comment', [CommentController::class, 'store'])
     ->middleware('auth')
     ->name('comments.store');
 
-Route::get('/contact', fn() => view('contact'))->name('contact');
+Route::get('/contact', fn () => view('contact'))->name('contact');
 
 Route::post('/contact', function (Request $request) {
     $data = $request->validate([
@@ -86,21 +90,38 @@ Route::post('/contact', function (Request $request) {
     ]);
 
     ContactSubmission::create($data);
-
-    Mail::to(config('mail.admin_address'))
-        ->send(new ContactFormSubmitted($data));
-
-    return back()->with('success', 'Je bericht is verzonden! We nemen snel contact op.');
+    Mail::to(config('mail.admin_address'))->send(new ContactFormSubmitted($data));
+    return back()->with('success', 'Je bericht is verzonden!');
 })->name('contact.send');
+
+/*
+|
+| Publieke gebruikersprofielen
+
+*/
+
+Route::get('/gebruikers', function () {
+    $users = User::select('id', 'name', 'username', 'avatar_path')->paginate(12);
+    return view('users.index', compact('users'));
+})->name('users.index');
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/* Auth Routes */
+/*
+
+Auth routes
+
+*/
+
 require __DIR__.'/auth.php';
 
-/* Gebruiker-routes */
+/*
+ Gebruiker routes
+
+*/
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
+    Route::get('/dashboard', fn () => view('users.dashboard'))->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -108,76 +129,33 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/bestelling', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/bestelling', [OrderController::class, 'store'])->name('orders.store');
-
     Route::get('/mijn-bestellingen', [OrderController::class, 'index'])->name('orders.index');
     Route::delete('/bestelling/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
-/* Admin-routes */
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware('auth')
-    ->group(function () {
-        Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
+/*| Admin routes
+ */
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
 
-        // Nieuwsbeheer
-        Route::resource('news', NewsController::class)
-            ->except(['show'])
-            ->names([
-                'index'   => 'news.index',
-                'create'  => 'news.create',
-                'store'   => 'news.store',
-                'edit'    => 'news.edit',
-                'update'  => 'news.update',
-                'destroy' => 'news.destroy',
-            ]);
+    Route::resource('news', NewsController::class)->except(['show']);
+    Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('faq', FaqController::class)->except(['show']);
+    Route::resource('comments', CommentAdminController::class)->only(['index', 'destroy']);
 
-        Route::get('news/{news}', function (News $news) {
-            return view('admin.news.index', compact('news'));
-        })->name('news.show');
+    Route::get('faq-submissions', fn () => view('admin.faq_submissions.index', [
+        'submissions' => FaqSubmission::latest()->paginate(20),
+    ]))->name('faq-submissions.index');
 
-        // FAQ-beheer
-        Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
-        Route::get('faq/create', [FaqController::class, 'create'])->name('faq.create');
-        Route::post('faq', [FaqController::class, 'store'])->name('faq.store');
-        Route::get('faq/{faq}/edit', [FaqController::class, 'edit'])->name('faq.edit');
-        Route::put('faq/{faq}', [FaqController::class, 'update'])->name('faq.update');
-        Route::delete('faq/{faq}', [FaqController::class, 'destroy'])->name('faq.destroy');
+    Route::get('contact-submissions', fn () => view('admin.contact_submissions.index', [
+        'subs' => ContactSubmission::latest()->paginate(20),
+    ]))->name('contact_submissions.index');
 
-        Route::post('faq-categories', function (Request $request) {
-            $data = $request->validate([
-                'name' => 'required|string|max:255|unique:faq_categories,name',
-            ]);
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
-            FaqCategory::create($data);
-
-            return redirect()->route('admin.faq.index')->with('success', 'Categorie toegevoegd.');
-        })->name('faq-categories.store');
-
-        Route::get('faq-submissions', function () {
-            $submissions = FaqSubmission::latest()->paginate(20);
-            return view('admin.faq_submissions.index', compact('submissions'));
-        })->name('faq-submissions.index');
-
-        Route::get('contact-submissions', function () {
-            $subs = ContactSubmission::latest()->paginate(20);
-            return view('admin.contact_submissions.index', compact('subs'));
-        })->name('contact_submissions.index');
-
-        Route::get('bestellingen', [OrderController::class, 'index'])->name('orders.index');
-
-        Route::resource('users', UserController::class)
-            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
-            ->names([
-                'index'   => 'users.index',
-                'create'  => 'users.create',
-                'store'   => 'users.store',
-                'edit'    => 'users.edit',
-                'update'  => 'users.update',
-                'destroy' => 'users.destroy',
-            ]);
-
-        // Reactiebeheer (NIEUW)
-        Route::get('comments', [CommentAdminController::class, 'index'])->name('comments.index');
-        Route::delete('comments/{comment}', [CommentAdminController::class, 'destroy'])->name('comments.destroy');
-    });
+    Route::post('faq-categories', function (Request $request) {
+        $data = $request->validate(['name' => 'required|string|max:255|unique:faq_categories,name']);
+        FaqCategory::create($data);
+        return redirect()->route('admin.faq.index')->with('success', 'Categorie toegevoegd.');
+    })->name('faq-categories.store');
+});

@@ -2,61 +2,141 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profiel bewerken</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profiel bewerken | Mijn Café</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
+  {{-- Navigatie --}}
   @include('partials.nav')
 
-  <main class="flex-grow max-w-md mx-auto py-12">
-    @if(session('success'))
-      <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
-        {{ session('success') }}
-      </div>
-    @endif
+  <main class="flex-grow py-12">
+    <div class="max-w-3xl mx-auto space-y-6 px-4">
 
-    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow space-y-4">
-      @csrf @method('PUT')
+      <h1 class="text-2xl font-bold text-center">👤 Profiel bewerken</h1>
 
-      <div class="text-center">
-        <img src="{{ auth()->user()->avatar_url }}" alt="Avatar" class="mx-auto w-24 h-24 rounded-full object-cover mb-2">
-        <label class="block text-sm font-medium mb-1">Nieuwe profielfoto</label>
-        <input type="file" name="avatar" class="mx-auto">
-        @error('avatar') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
-      </div>
+      {{-- Succesmelding --}}
+      @if(session('status'))
+        <div class="bg-green-100 text-green-800 p-3 rounded mb-4 text-center">
+          {{ session('status') }}
+        </div>
+      @endif
 
-      <div>
-        <label class="block font-semibold">Username</label>
-        <input type="text" name="username" value="{{ old('username', auth()->user()->username) }}"
-               class="w-full border rounded p-2">
-        @error('username') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
-      </div>
+      {{-- Formulier --}}
+      <section class="bg-white shadow sm:rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-6 text-center">Persoonlijke gegevens</h2>
 
-      <div>
-        <label class="block font-semibold">Verjaardag</label>
-        <input type="date" name="birthday" value="{{ old('birthday', auth()->user()->birthday) }}"
-               class="w-full border rounded p-2">
-        @error('birthday') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
-      </div>
+        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="space-y-6 text-center">
+          @csrf
+          @method('PATCH')
 
-      <div>
-        <label class="block font-semibold">Over mij</label>
-        <textarea name="bio" rows="4" class="w-full border rounded p-2">{{ old('bio', auth()->user()->bio) }}</textarea>
-        @error('bio') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
-      </div>
+          {{-- Naam --}}
+          <div>
+            <label for="name" class="block font-semibold mb-2">Naam</label>
+            <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}"
+                   class="mx-auto block w-full sm:w-2/3 border rounded p-2">
+            @error('name') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+          </div>
 
-      <div class="text-right">
-        <button type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Opslaan
-        </button>
-      </div>
-    </form>
+          {{-- Gebruikersnaam --}}
+          <div>
+            <label for="username" class="block font-semibold mb-2">Gebruikersnaam</label>
+            <input id="username" name="username" type="text" value="{{ old('username', $user->username) }}"
+                   class="mx-auto block w-full sm:w-2/3 border rounded p-2">
+            @error('username') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+          </div>
+
+          {{-- E-mailadres --}}
+          <div>
+            <label class="block font-semibold mb-2">E-mailadres</label>
+            <p>{{ $user->email }}</p>
+          </div>
+
+          {{-- Verjaardag --}}
+          <div>
+            <label for="birthday" class="block font-semibold mb-2">Verjaardag</label>
+            <input id="birthday" name="birthday" type="date"
+                   value="{{ old('birthday', optional($user->birthday)->format('Y-m-d')) }}"
+                   class="mx-auto block w-full sm:w-2/3 border rounded p-2">
+            @error('birthday') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+          </div>
+
+          {{-- Profielfoto --}}
+          <div>
+            <label for="avatar" class="block font-semibold mb-2">Profielfoto</label>
+            @if($user->avatar_path)
+              <img src="{{ $user->avatar_url }}"
+                   alt="Profielfoto"
+                   class="mx-auto mb-4 w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow">
+            @endif
+            <input id="avatar" name="avatar" type="file" accept="image/*"
+                   class="mx-auto block w-full sm:w-2/3 border rounded p-2">
+            <div id="preview-container"></div>
+            @error('avatar') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+          </div>
+
+          {{-- Bio --}}
+          <div>
+            <label for="bio" class="block font-semibold mb-2">Over mij</label>
+            <textarea id="bio" name="bio" rows="4"
+                      class="mx-auto block w-full sm:w-2/3 border rounded p-2">{{ old('bio', $user->bio) }}</textarea>
+            @error('bio') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+          </div>
+
+          {{-- Opslaan --}}
+          <div>
+            <button type="submit"
+                    class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+              Opslaan
+            </button>
+          </div>
+
+          {{-- Terug --}}
+          <div>
+            <a href="{{ route('dashboard') }}"
+               class="mt-4 inline-block text-gray-600 hover:underline">
+              ← Terug naar dashboard
+            </a>
+          </div>
+        </form>
+      </section>
+
+      {{-- Extra formulieren --}}
+      <section class="bg-white shadow sm:rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 text-center">Wachtwoord wijzigen</h2>
+        @include('profile.partials.update-password-form')
+      </section>
+
+      <section class="bg-white shadow sm:rounded-lg p-6">
+        <h2 class="text-xl font-semibold mb-4 text-red-600 text-center">Account verwijderen</h2>
+        @include('profile.partials.delete-user-form')
+      </section>
+
+    </div>
   </main>
 
-   {{-- Footer --}}
-@include('partials.footer')
+  {{-- Footer --}}
+  @include('partials.footer')
+
+  {{-- JavaScript voor live preview --}}
+  <script>
+    document.getElementById('avatar').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const previewContainer = document.getElementById('preview-container');
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          previewContainer.innerHTML = `
+            <img src="${event.target.result}" alt="Preview"
+                 class="mx-auto mt-4 w-32 h-32 rounded-full object-cover ring-2 ring-blue-300 shadow">`;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewContainer.innerHTML = '';
+      }
+    });
+  </script>
+
 </body>
 </html>

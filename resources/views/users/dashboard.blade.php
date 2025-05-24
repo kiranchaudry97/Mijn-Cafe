@@ -18,17 +18,27 @@
       <h1 class="text-2xl font-bold text-gray-800">🎉 Welkom terug, {{ Auth::user()->name }}!</h1>
       <p class="text-gray-600">Je bent ingelogd op het dashboard.</p>
 
+      {{-- Succesbericht --}}
+      @if(session('status'))
+        <div class="bg-green-100 text-green-800 p-3 rounded">
+          {{ session('status') }}
+        </div>
+      @endif
+
       {{-- Gebruikersinformatie --}}
       <div class="mt-8 space-y-4 text-center">
         <h2 class="text-xl font-semibold text-gray-700 mb-4">👤 Jouw profiel</h2>
 
         {{-- Profielfoto --}}
-        @if(Auth::user()->avatar_url)
-          <div class="flex justify-center">
-            <img src="{{ Auth::user()->avatar_url }}"
+        @if(Auth::user()->avatar_path && file_exists(public_path('storage/' . Auth::user()->avatar_path)))
+          <div>
+            <p><strong>Profielfoto:</strong></p>
+            <img src="{{ asset('storage/' . Auth::user()->avatar_path) }}"
                  alt="Profielfoto"
-                 class="w-28 h-28 rounded-full object-cover ring-2 ring-gray-300 shadow">
+                 class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
           </div>
+        @else
+          <p><em>Geen profielfoto ingesteld.</em></p>
         @endif
 
         {{-- Profielgegevens --}}
@@ -66,8 +76,8 @@
     </div>
   </main>
 
- {{-- Footer --}}
-@include('partials.footer')
+  {{-- Footer --}}
+  @include('partials.footer')
 
 </body>
 </html>

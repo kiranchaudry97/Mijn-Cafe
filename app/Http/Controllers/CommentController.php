@@ -9,7 +9,15 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     /**
-     * Sla een nieuwe reactie op.
+     * Alleen ingelogde gebruikers mogen deze controller gebruiken.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Sla een nieuwe reactie op voor een nieuwsbericht.
      */
     public function store(Request $request, News $news)
     {
@@ -23,5 +31,19 @@ class CommentController extends Controller
         ]);
 
         return back()->with('success', 'Reactie geplaatst.');
+    }
+
+    /**
+     * Verwijder een reactie — alleen door eigenaar of admin.
+     */
+    public function destroy(Comment $comment)
+    {
+        if (auth()->id() !== $comment->user_id && !auth()->user()?->is_admin) {
+            abort(403, 'Je hebt geen rechten om deze reactie te verwijderen.');
+        }
+
+        $comment->delete();
+
+        return back()->with('success', 'Reactie verwijderd.');
     }
 }

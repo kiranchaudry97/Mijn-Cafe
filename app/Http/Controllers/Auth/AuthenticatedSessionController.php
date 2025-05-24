@@ -24,20 +24,28 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $adminLogin = $request->has('admin');
+
         $request->authenticate();
+
+        // Controleer of de gebruiker admin is indien gevraagd
+        if ($adminLogin && !Auth::user()->is_admin) {
+            Auth::logout();
+            return back()->withErrors(['email' => 'Geen toegang tot het admin-gedeelte.']);
+        }
 
         $request->session()->regenerate();
 
+        // Eventuele redirect parameter
         $redirectTo = $request->input('redirect');
 
-        // Als een redirect-parameter is meegegeven, volg die.
         if ($redirectTo) {
             return redirect()->intended($redirectTo);
         }
 
-        // Standaard gedrag: admin of gebruiker
+        // Admin dashboard of standaard dashboard
         return redirect()->intended(
-            auth()->user()->is_admin ? '/admin/dashboard' : route('dashboard')
+            $adminLogin ? route('admin.dashboard') : route('dashboard')
         );
     }
 
