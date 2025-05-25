@@ -11,64 +11,79 @@
   {{-- Navigatie --}}
   @include('partials.nav')
 
-  <main class="flex-grow max-w-5xl mx-auto py-12 px-4">
-    <h1 class="text-2xl font-bold mb-6 text-center">💬 Reactiebeheer</h1>
+  <main class="flex-grow flex justify-center py-12 px-4">
+    <div class="w-full max-w-4xl space-y-8">
 
-    @if(session('success'))
-      <div class="bg-green-100 text-green-800 p-3 rounded mb-6 text-center">
-        {{ session('success') }}
-      </div>
-    @endif
+      <h1 class="text-3xl font-bold text-center text-gray-800">💬 Reactiebeheer</h1>
 
-    @forelse ($comments as $comment)
-      <div class="bg-white p-4 rounded shadow mb-4">
-        <p class="text-sm text-gray-600 mb-1">
-          <strong>{{ $comment->user->name ?? 'Anoniem' }}</strong> op
-          <a href="{{ route('news.show', $comment->news) }}" class="underline text-blue-600 hover:text-blue-800">
-            {{ $comment->news->title }}
-          </a>
-          <span class="text-gray-500">— {{ $comment->created_at->format('d/m/Y H:i') }}</span>
-        </p>
+      @if(session('success'))
+        <div class="bg-green-100 text-green-800 p-3 rounded text-center shadow">
+          {{ session('success') }}
+        </div>
+      @endif
 
-        @if ($comment->rating)
-          <div class="flex mb-1">
-            @for ($i = 1; $i <= 5; $i++)
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   class="h-5 w-5 {{ $i <= $comment->rating ? 'text-yellow-400' : 'text-gray-300' }}"
-                   fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.446..." />
-              </svg>
-            @endfor
+      @forelse ($comments as $comment)
+        <div class="bg-white p-6 rounded-lg shadow space-y-3">
+          <div class="text-sm text-gray-600 text-center">
+            <strong>{{ $comment->user->name ?? 'Anoniem' }}</strong>
+            op
+            @if($comment->news)
+              <a href="{{ route('news.show', $comment->news) }}" class="text-blue-600 underline hover:text-blue-800">
+                {{ $comment->news->title }}
+              </a>
+            @else
+              <span class="italic text-gray-400">Onbekend nieuwsitem</span>
+            @endif
+            <span class="text-gray-500 block mt-1">{{ $comment->created_at->format('d/m/Y H:i') }}</span>
           </div>
-        @endif
 
-        <p class="text-gray-800 mb-2">{{ $comment->content }}</p>
+          @if ($comment->rating)
+            <div class="flex justify-center">
+              @for ($i = 1; $i <= 5; $i++)
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-5 w-5 {{ $i <= $comment->rating ? 'text-yellow-400' : 'text-gray-300' }}"
+                     fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.446
+                           h3.622c.969 0 1.371 1.24.588 1.81l-2.931 2.13
+                           1.11 3.422c.3.921-.755 1.688-1.54 1.118l-2.969-2.15
+                           -2.969 2.15c-.785.57-1.84-.197-1.54-1.118l1.11-3.422
+                           -2.93-2.13c-.783-.57-.38-1.81.588-1.81h3.622l1.12-3.446z"/>
+                </svg>
+              @endfor
+            </div>
+          @endif
 
-        <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}">
-          @csrf
-          @method('DELETE')
-          <button class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">
-            Verwijderen
-          </button>
-        </form>
+          <p class="text-gray-800 text-center">{{ $comment->content }}</p>
+
+          <div class="flex justify-center">
+            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}">
+              @csrf
+              @method('DELETE')
+              <button class="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 text-sm">
+                Verwijderen
+              </button>
+            </form>
+          </div>
+        </div>
+      @empty
+        <p class="text-center text-gray-600 italic">Er zijn nog geen reacties.</p>
+      @endforelse
+
+      <div class="text-center">
+        {{ $comments->links() }}
       </div>
-    @empty
-      <p class="text-center text-gray-600">Er zijn nog geen reacties.</p>
-    @endforelse
 
-    <div class="mt-6">
-      {{ $comments->links() }}
-    </div>
+      <div class="text-center">
+        <a href="{{ route('admin.dashboard') }}" class="text-blue-600 underline hover:text-blue-800">
+          ← Terug naar dashboard
+        </a>
+      </div>
 
-    <div class="mt-8 text-center">
-      <a href="{{ route('admin.dashboard') }}" class="text-gray-700 underline hover:text-gray-900">
-        ← Terug naar dashboard
-      </a>
     </div>
   </main>
 
- {{-- Footer --}}
-@include('partials.footer')
+  {{-- Footer --}}
+  @include('partials.footer')
 
 </body>
 </html>

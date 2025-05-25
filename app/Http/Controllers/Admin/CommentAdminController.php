@@ -11,15 +11,7 @@ class CommentAdminController extends Controller
     /**
      * Beperk toegang tot alleen admins.
      */
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if (!auth()->user()?->is_admin) {
-                abort(403, 'Toegang geweigerd');
-            }
-            return $next($request);
-        });
-    }
+ 
 
     /**
      * Toon alle reacties in het adminpaneel.

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\NewsController;
@@ -14,40 +14,34 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CoffeeReviewController;
 
+use App\Models\{User, News, Coffee, FaqCategory, ContactSubmission, FaqSubmission};
 use App\Mail\ContactFormSubmitted;
-use App\Models\ContactSubmission;
-use App\Models\News;
-use App\Models\FaqCategory;
-use App\Models\Coffee;
-use App\Models\FaqSubmission;
-use App\Models\User;
 
 /* Publieke routes */
 
 Route::get('/', function () {
-    $coffees = Coffee::all();
-    $categories = FaqCategory::with('faqs')->get();
-    $newsItems = News::whereNotNull('published_at')
-        ->where('published_at', '<=', now())
-        ->latest('published_at')
-        ->take(3)
-        ->get();
-
-    return view('welcome', compact('coffees', 'categories', 'newsItems'));
+    return view('welcome', [
+        'coffees' => Coffee::all(),
+        'categories' => FaqCategory::with('faqs')->get(),
+        'newsItems' => News::whereNotNull('published_at')
+            ->where('published_at', '<=', now())
+            ->latest('published_at')->take(3)->get(),
+    ]);
 })->name('home');
 
 Route::get('/menu', function () {
-    $coffees = Coffee::with('reviews.user')->get();
-    return view('menu', compact('coffees'));
+    return view('menu', [
+        'coffees' => Coffee::with('reviews.user')->get()
+    ]);
 })->name('menu');
 
 Route::post('/coffee/{coffee}/review', [CoffeeReviewController::class, 'store'])
-    ->middleware('auth')
-    ->name('coffee.reviews.store');
+    ->middleware('auth')->name('coffee.reviews.store');
 
 Route::get('/faq', function () {
-    $categories = FaqCategory::with('faqs')->get();
-    return view('faq.index', compact('categories'));
+    return view('faq.index', [
+        'categories' => FaqCategory::with('faqs')->get()
+    ]);
 })->name('faq.index');
 
 Route::post('/faq/submit', function (Request $request) {
@@ -56,29 +50,24 @@ Route::post('/faq/submit', function (Request $request) {
         'email'   => 'required|email|max:255',
         'message' => 'required|string',
     ]);
-
     FaqSubmission::create($data);
     return redirect()->route('faq.index')->with('success', 'Bedankt voor je vraag!');
 })->name('faq.submit');
 
 Route::get('/nieuws', function () {
-    $newsItems = News::whereNotNull('published_at')
-        ->where('published_at', '<=', now())
-        ->latest('published_at')
-        ->paginate(6);
-
-    return view('news.index', compact('newsItems'));
+    return view('news.index', [
+        'newsItems' => News::whereNotNull('published_at')
+            ->where('published_at', '<=', now())
+            ->latest('published_at')->paginate(6)
+    ]);
 })->name('news.index');
 
-Route::get('/nieuws/{news}', function (News $news) {
-    return view('news.show', compact('news'));
-})->name('news.show');
+Route::get('/nieuws/{news}', fn (News $news) => view('news.show', compact('news')))->name('news.show');
 
 Route::post('/nieuws/{news}/comment', [CommentController::class, 'store'])
-    ->middleware('auth')
-    ->name('comments.store');
+    ->middleware('auth')->name('comments.store');
 
-Route::get('/contact', fn () => view('contact'))->name('contact');
+Route::view('/contact', 'contact')->name('contact');
 
 Route::post('/contact', function (Request $request) {
     $data = $request->validate([
@@ -86,28 +75,25 @@ Route::post('/contact', function (Request $request) {
         'email'   => 'required|email|max:255',
         'message' => 'required|string',
     ]);
-
     ContactSubmission::create($data);
     Mail::to(config('mail.admin_address'))->send(new ContactFormSubmitted($data));
     return back()->with('success', 'Je bericht is verzonden!');
 })->name('contact.send');
 
-/* Publieke gebruikersprofielen */
-
-Route::get('/gebruikers', function () {
-    $users = User::select('id', 'name', 'username', 'profile_photo')->paginate(12);
-    return view('users.index', compact('users'));
-})->name('users.index');
+/* Gebruikersprofielen (publiek) */
+Route::get('/gebruikers', fn () => view('users.index', [
+    'users' => User::select('id', 'name', 'username', 'profile_photo', 'bio')->paginate(12)
+]))->name('users.index');
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/* Symlink voor storage maken via browser */
+/* Symlink fix via browser */
 Route::get('/storage-link', function () {
-    $targetFolder = storage_path('app/public');
-    $linkFolder = public_path('storage');
+    $target = storage_path('app/public');
+    $link = public_path('storage');
 
-    if (!file_exists($linkFolder)) {
-        symlink($targetFolder, $linkFolder);
+    if (!file_exists($link)) {
+        symlink($target, $link);
         return 'Symlink succesvol aangemaakt!';
     }
 
@@ -117,13 +103,11 @@ Route::get('/storage-link', function () {
 /* Auth routes */
 require __DIR__ . '/auth.php';
 
-/* Ingelogde routes */
+/* Gebruikersroutes */
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('users.dashboard', [
-            'user' => Auth::user(),
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', fn () => view('users.dashboard', [
+        'user' => Auth::user()
+    ]))->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -137,7 +121,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 /* Admin routes */
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
 
     Route::resource('news', NewsController::class)->except(['show']);
@@ -146,17 +130,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('comments', CommentAdminController::class)->only(['index', 'destroy']);
 
     Route::get('faq-submissions', fn () => view('admin.faq_submissions.index', [
-        'submissions' => FaqSubmission::latest()->paginate(20),
+        'submissions' => FaqSubmission::latest()->paginate(20)
     ]))->name('faq-submissions.index');
 
     Route::get('contact-submissions', fn () => view('admin.contact_submissions.index', [
-        'subs' => ContactSubmission::latest()->paginate(20),
+        'subs' => ContactSubmission::latest()->paginate(20)
     ]))->name('contact_submissions.index');
 
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
     Route::post('faq-categories', function (Request $request) {
-        $data = $request->validate(['name' => 'required|string|max:255|unique:faq_categories,name']);
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:faq_categories,name'
+        ]);
         FaqCategory::create($data);
         return redirect()->route('admin.faq.index')->with('success', 'Categorie toegevoegd.');
     })->name('faq-categories.store');
