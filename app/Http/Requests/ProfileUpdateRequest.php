@@ -9,22 +9,25 @@ use Illuminate\Validation\Rule;
 class ProfileUpdateRequest extends FormRequest
 {
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * Bepaal of de gebruiker geautoriseerd is.
+     */
+    public function authorize(): bool
+    {
+        return auth()->check();
+    }
+
+    /**
+     * Valideer profielgegevens.
      */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+            'name'     => ['required', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:50', Rule::unique(User::class)->ignore($this->user()->id)],
+            'email'    => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'birthday' => ['nullable', 'date'],
+            'bio'      => ['nullable', 'string', 'max:1000'],
+            'profile_photo' => ['nullable', 'image', 'max:4096'],
         ];
     }
 }

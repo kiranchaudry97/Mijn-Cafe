@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
-    /**
-     * Toon het formulier om profielgegevens te bewerken.
-     */
     public function edit(Request $request): View
     {
         return view('users.edit', [
@@ -21,51 +20,27 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Publiek profiel tonen van een gebruiker.
-     */
     public function show(User $user): View
     {
         return view('users.show', compact('user'));
     }
 
-    /**
-     * Werk het profiel bij.
-     */
-    public function update(Request $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-
-        $validated = $request->validate([
-            'name'           => 'required|string|max:255',
-            'username'       => 'nullable|string|max:50|unique:users,username,' . $user->id,
-            'email'          => 'required|email|max:255|unique:users,email,' . $user->id,
-            'birthday'       => 'nullable|date',
-            'bio'            => 'nullable|string|max:1000',
-            'profile_photo'  => 'nullable|image|max:4096',
-            'password'       => 'nullable|string|min:8|confirmed',
-        ]);
+        $validated = $request->validated();
 
         if ($user->email !== $validated['email']) {
             $user->email_verified_at = null;
         }
 
         if ($request->hasFile('profile_photo')) {
-            // Verwijder bestaande afbeelding als die bestaat
             if ($user->profile_photo && Storage::disk('public')->exists($user->profile_photo)) {
                 Storage::disk('public')->delete($user->profile_photo);
             }
 
-            // Sla nieuwe afbeelding op
             $path = $request->file('profile_photo')->store('profile_photo', 'public');
             $validated['profile_photo'] = $path;
-        }
-
-        // Verwerk wachtwoord indien ingevuld
-        if (!empty($validated['password'])) {
-            $validated['password'] = bcrypt($validated['password']);
-        } else {
-            unset($validated['password']);
         }
 
         $user->update($validated);
@@ -73,9 +48,20 @@ class ProfileController extends Controller
         return redirect()->route('dashboard')->with('status', 'Profiel bijgewerkt.');
     }
 
-    /**
-     * Verwijder account.
-     */
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('profile.edit')->with('status', 'Wachtwoord succesvol gewijzigd.');
+    }
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -84,7 +70,6 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        // Verwijder profielfoto indien aanwezig
         if ($user->profile_photo && Storage::disk('public')->exists($user->profile_photo)) {
             Storage::disk('public')->delete($user->profile_photo);
         }

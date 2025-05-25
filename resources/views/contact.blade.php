@@ -20,7 +20,7 @@
       <div class="space-y-2 text-gray-700 mb-8">
         <p class="flex items-center justify-center space-x-2">
           <span>📍</span>
-          <span>Marktstraat 1, 1000 Brussel</span>
+          <span>Nijverheidskaai 170, 1070 Anderlecht</span>
         </p>
         <p class="flex items-center justify-center space-x-2">
           <span>📞</span>

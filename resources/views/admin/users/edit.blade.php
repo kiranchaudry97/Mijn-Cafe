@@ -68,15 +68,17 @@
                 class="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700">
           Opslaan
         </button>
-      </div>
-    </form>
-    </div>
-    {{-- Terug naar overzicht --}}
+
+         {{-- Terug naar overzicht --}}
       <div class="text-center mt-6">
         <a href="{{ route('admin.dashboard') }}" class="text-gray-700 underline hover:text-gray-900">
           ← Terug naar overzicht
         </a>
       </div>
+      </div>
+    </form>
+    </div>
+   
   </main>
 
   {{-- ✅ Footer --}}

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'avatar_path',
         'birthday',
         'bio',
+        'profile_photo',
     ];
 
     /**
@@ -65,12 +67,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Accessor voor avatar_url.
+     * Accessor voor profielfoto URL.
      */
     public function getProfilePhotoUrlAttribute()
-{
-    return $this->profile_photo && Storage::disk('public')->exists($this->profile_photo)
-        ? asset('storage/' . $this->profile_photo)
-        : asset('images/default-avatar.png');
-}
+    {
+        return $this->profile_photo && Storage::disk('public')->exists($this->profile_photo)
+            ? asset('storage/' . $this->profile_photo)
+            : asset('images/default-avatar.png');
+    }
 }

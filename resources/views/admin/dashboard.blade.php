@@ -9,7 +9,8 @@
 <body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
 
   {{-- Navigatie --}}
-  @include('partials.nav')
+ @include('partials.nav-admin')
+
 
   {{-- Hoofdinhoud --}}
   <main class="flex-grow py-12">

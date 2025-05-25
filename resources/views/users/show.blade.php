@@ -19,7 +19,7 @@
          alt="Profielfoto"
          class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
 @else
-    <img src="{{ asset('images/default-avatar.png') }}"
+    <img src="{{ asset('images/avatar.jpg') }}"
          alt="Standaard profielfoto"
          class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
 @endif

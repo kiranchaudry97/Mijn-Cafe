@@ -21,7 +21,7 @@
       <h4 class="font-semibold uppercase mb-3 text-gray-300">Say Hello</h4>
       <p class="mb-2">Vragen of opmerkingen? Neem gerust contact op via e-mail.</p>
       <p class="font-semibold">
-        <a href="mailto:info@mijncafe.nl" class="hover:underline text-blue-300">info@mijncafe.nl</a>
+        <a href="mailto:info@mijncafe.nl" class="hover:underline text-blue-300">info@mijncafe.be</a>
       </p>
     </div>
 

@@ -57,7 +57,7 @@
         <div>
             <label for="profile_photo" class="block font-semibold mb-1 text-gray-700">Profielfoto</label>
             @if ($user->profile_photo)
-                <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Profielfoto"
+                <img src="{{ asset('storage/public' . $user->profile_photo) }}" alt="Profielfoto"
                      class="w-24 h-24 object-cover rounded-full mb-4 mx-auto ring-2 ring-gray-300 shadow">
             @endif
             <input id="profile_photo" name="profile_photo" type="file"

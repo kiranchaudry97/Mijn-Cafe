@@ -15,7 +15,7 @@
   <main class="flex-grow py-12">
     <div class="max-w-3xl mx-auto bg-white p-8 rounded shadow text-center space-y-6">
 
-      <h1 class="text-2xl font-bold text-gray-800">🎉 Welkom terug, {{ Auth::user()->name }}!</h1>
+      <h1 class="text-2xl font-bold text-gray-800">🎉 Welkom terug, {{ $user->name }}!</h1>
       <p class="text-gray-600">Je bent ingelogd op het dashboard.</p>
 
       {{-- Succesbericht --}}
@@ -30,28 +30,28 @@
         <h2 class="text-xl font-semibold text-gray-700 mb-4">👤 Jouw profiel</h2>
 
         {{-- Profielfoto --}}
-       @if(Auth::user()->profile_photo)
-    <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}"
-         alt="Profielfoto"
-         class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
-@else
-    <img src="{{ asset('images/*') }}"
-         alt="Geen profielfoto"
-         class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
-@endif
+        @if($user->profile_photo)
+          <img src="{{ asset('storage/' . $user->profile_photo) }}"
+               alt="Profielfoto"
+               class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+        @else
+          <img src="{{ asset('images/avatar.jpg') }}"
+               alt="Standaard profielfoto"
+               class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+        @endif
 
         {{-- Profielgegevens --}}
         <div class="text-gray-800 mt-4 space-y-2">
-          <p><strong>Naam:</strong> {{ Auth::user()->name }}</p>
-          @if(Auth::user()->username)
-            <p><strong>Gebruikersnaam:</strong> {{ Auth::user()->username }}</p>
+          <p><strong>Naam:</strong> {{ $user->name }}</p>
+          @if($user->username)
+            <p><strong>Gebruikersnaam:</strong> {{ $user->username }}</p>
           @endif
-          <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-          @if(Auth::user()->birthday)
-            <p><strong>Verjaardag:</strong> {{ Auth::user()->birthday->format('d-m-Y') }}</p>
+          <p><strong>Email:</strong> {{ $user->email }}</p>
+          @if($user->birthday)
+            <p><strong>Verjaardag:</strong> {{ $user->birthday->format('d-m-Y') }}</p>
           @endif
-          @if(Auth::user()->bio)
-            <p><strong>Over mij:</strong> {{ Auth::user()->bio }}</p>
+          @if($user->bio)
+            <p><strong>Over mij:</strong> {{ $user->bio }}</p>
           @endif
         </div>
       </div>

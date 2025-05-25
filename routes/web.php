@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\NewsController;
@@ -100,10 +101,10 @@ Route::get('/gebruikers', function () {
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/* Storage symlink aanmaken via browser (alleen tijdelijk nodig!) */
+/* Symlink voor storage maken via browser */
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    $linkFolder = public_path('storage');
 
     if (!file_exists($linkFolder)) {
         symlink($targetFolder, $linkFolder);
@@ -116,13 +117,17 @@ Route::get('/storage-link', function () {
 /* Auth routes */
 require __DIR__ . '/auth.php';
 
-/* Gebruikersroutes (auth + verified) */
-
+/* Ingelogde routes */
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn () => view('users.dashboard'))->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('users.dashboard', [
+            'user' => Auth::user(),
+        ]);
+    })->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/bestelling', [OrderController::class, 'create'])->name('orders.create');
@@ -132,8 +137,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 /* Admin routes */
-
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', fn () => view('admin.dashboard'))->name('dashboard');
 
     Route::resource('news', NewsController::class)->except(['show']);

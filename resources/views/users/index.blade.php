@@ -22,14 +22,17 @@
             
 
 
-               {{-- Profielfoto --}}
-      @if($user->profile_photo && file_exists(public_path('storage/' . $user->profile_photo)))
-        <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Profielfoto"
-             class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
-      @else
-        <img src="{{ asset('images/default-avatar.png') }}" alt="Standaard profielfoto"
-             class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
-      @endif
+    {{-- Profielfoto --}}
+     @if($user->profile_photo)
+    <img src="{{ asset('storage/' . $user->profile_photo) }}"
+         alt="Profielfoto"
+         class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+@else
+    <img src="{{ asset('images/avatar.jpg') }}"
+         alt="Standaard profielfoto"
+         class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+@endif
+
 
             {{-- Naam --}}
             <h2 class="font-semibold text-lg text-gray-800">
