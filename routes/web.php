@@ -94,15 +94,27 @@ Route::post('/contact', function (Request $request) {
 /* Publieke gebruikersprofielen */
 
 Route::get('/gebruikers', function () {
-    $users = User::select('id', 'name', 'username', 'avatar_path')->paginate(12);
+    $users = User::select('id', 'name', 'username', 'profile_photo')->paginate(12);
     return view('users.index', compact('users'));
 })->name('users.index');
 
 Route::get('/users/{user}', [ProfileController::class, 'show'])->name('users.show');
 
-/* Auth routes */
+/* Storage symlink aanmaken via browser (alleen tijdelijk nodig!) */
+Route::get('/storage-link', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
 
-require __DIR__.'/auth.php';
+    if (!file_exists($linkFolder)) {
+        symlink($targetFolder, $linkFolder);
+        return 'Symlink succesvol aangemaakt!';
+    }
+
+    return 'Symlink bestaat al.';
+});
+
+/* Auth routes */
+require __DIR__ . '/auth.php';
 
 /* Gebruikersroutes (auth + verified) */
 

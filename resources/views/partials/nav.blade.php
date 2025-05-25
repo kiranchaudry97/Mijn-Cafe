@@ -6,6 +6,11 @@
       <li><a href="{{ route('menu') }}" class="hover:text-white hover:underline decoration-white">Menu</a></li>
      <li><a href="{{ route('faq.index') }}" class="hover:text-white hover:underline decoration-white">FAQ</a></li>
       <li><a href="{{ route('contact') }}" class="hover:text-white hover:underline decoration-white">Contact</a></li>
+      <li><a href="{{ route('users.index') }}" class="hover:text-white hover:underline decoration-white">Gebruikers</a></li>
+
+@auth
+  <li><a href="{{ route('profile.edit') }}" class="hover:text-white hover:underline decoration-white">Profiel</a></li>
+@endauth
 
       @auth
         <li><a href="{{ route('orders.index') }}" class="hover:text-white hover:underline decoration-white">Winkelmand</a></li>

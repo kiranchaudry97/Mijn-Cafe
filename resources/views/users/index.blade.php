@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gebruikers | Mijn Café</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -12,31 +12,49 @@
   @include('partials.nav')
 
   <main class="flex-grow py-12 px-4">
-    <h1 class="text-3xl font-bold text-center mb-8">Gebruikersprofielen</h1>
+    <div class="max-w-7xl mx-auto space-y-10">
 
-    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      @foreach ($users as $user)
-        <div class="bg-white p-4 rounded shadow text-center">
-          {{-- Profielfoto --}}
-          <img src="{{ $user->avatar_path && file_exists(public_path('storage/' . $user->avatar_path))
-                      ? asset('storage/' . $user->avatar_path)
-                      : asset('images/default-avatar.png') }}"
-               alt="{{ $user->username ?? $user->name }}"
-               class="w-24 h-24 object-cover rounded-full mx-auto mb-3 shadow ring-2 ring-gray-200">
+      <h1 class="text-3xl font-bold text-center text-gray-800">👥 Gebruikersprofielen</h1>
 
-          {{-- Naam --}}
-          <h2 class="font-semibold text-lg text-gray-800">
-            <a href="{{ route('users.show', $user) }}" class="hover:underline">
-              {{ $user->username ?? $user->name }}
-            </a>
-          </h2>
-        </div>
-      @endforeach
-    </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @foreach ($users as $user)
+          <div class="bg-white p-6 rounded-lg shadow text-center space-y-3">
+            
 
-    {{-- Paginatie --}}
-    <div class="mt-8 text-center">
-      {{ $users->links() }}
+
+               {{-- Profielfoto --}}
+      @if($user->profile_photo && file_exists(public_path('storage/' . $user->profile_photo)))
+        <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Profielfoto"
+             class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+      @else
+        <img src="{{ asset('images/default-avatar.png') }}" alt="Standaard profielfoto"
+             class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+      @endif
+
+            {{-- Naam --}}
+            <h2 class="font-semibold text-lg text-gray-800">
+              <a href="{{ route('users.show', $user) }}" class="hover:underline">
+                {{ $user->username ?? $user->name }}
+              </a>
+            </h2>
+
+            {{-- Korte bio --}}
+            @if($user->bio)
+              <p class="text-sm text-gray-600 line-clamp-3">
+                {{ Str::limit($user->bio, 80) }}
+              </p>
+            @else
+              <p class="text-sm text-gray-400 italic">Geen bio beschikbaar</p>
+            @endif
+          </div>
+        @endforeach
+      </div>
+
+      {{-- Paginatie --}}
+      <div class="text-center">
+        {{ $users->links() }}
+      </div>
+
     </div>
   </main>
 

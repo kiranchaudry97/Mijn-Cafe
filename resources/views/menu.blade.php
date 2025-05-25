@@ -69,18 +69,7 @@
                 <form method="POST" action="{{ route('coffee.reviews.store', $coffee) }}" class="flex flex-col items-center">
                   @csrf
                   <textarea name="content" rows="2" class="w-full max-w-md p-2 border rounded mb-3" placeholder="Jouw review..." required></textarea>
-                  <div class="flex space-x-1 mb-3">
-                    @for ($i = 1; $i <= 5; $i++)
-                      <label>
-                        <input type="radio" name="rating" value="{{ $i }}" class="hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6 cursor-pointer text-gray-400 hover:text-yellow-400"
-                             fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.12 3.446..." />
-                        </svg>
-                      </label>
-                    @endfor
-                  </div>
+                  
                   <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Plaats review
                   </button>

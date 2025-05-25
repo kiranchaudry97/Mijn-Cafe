@@ -10,6 +10,11 @@
 
       @auth
         <li>
+          <a href="{{ route('users.show', auth()->user()) }}" class="hover:text-white hover:underline decoration-white">
+            Mijn Profiel
+          </a>
+        </li>
+        <li>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="hover:text-red-400 hover:underline decoration-white">Uitloggen</button>

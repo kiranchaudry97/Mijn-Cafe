@@ -30,16 +30,15 @@
         <h2 class="text-xl font-semibold text-gray-700 mb-4">👤 Jouw profiel</h2>
 
         {{-- Profielfoto --}}
-        @if(Auth::user()->avatar_path && file_exists(public_path('storage/' . Auth::user()->avatar_path)))
-          <div>
-            <p><strong>Profielfoto:</strong></p>
-            <img src="{{ asset('storage/' . Auth::user()->avatar_path) }}"
-                 alt="Profielfoto"
-                 class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
-          </div>
-        @else
-          <p><em>Geen profielfoto ingesteld.</em></p>
-        @endif
+       @if(Auth::user()->profile_photo)
+    <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}"
+         alt="Profielfoto"
+         class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
+@else
+    <img src="{{ asset('images/*') }}"
+         alt="Geen profielfoto"
+         class="mx-auto mb-4 w-28 h-28 object-cover rounded-full ring-2 ring-gray-300 shadow">
+@endif
 
         {{-- Profielgegevens --}}
         <div class="text-gray-800 mt-4 space-y-2">

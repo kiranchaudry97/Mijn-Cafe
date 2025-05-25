@@ -67,10 +67,10 @@ class User extends Authenticatable
     /**
      * Accessor voor avatar_url.
      */
-    public function getAvatarUrlAttribute(): string
-    {
-        return $this->avatar_path && file_exists(public_path('storage/' . $this->avatar_path))
-            ? asset('storage/' . $this->avatar_path)
-            : asset('images/default-avatar.png');
-    }
+    public function getProfilePhotoUrlAttribute()
+{
+    return $this->profile_photo && Storage::disk('public')->exists($this->profile_photo)
+        ? asset('storage/' . $this->profile_photo)
+        : asset('images/default-avatar.png');
+}
 }
