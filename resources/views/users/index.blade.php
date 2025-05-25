@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Str; @endphp
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -19,20 +20,17 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @foreach ($users as $user)
           <div class="bg-white p-6 rounded-lg shadow text-center space-y-3">
-            
 
-
-    {{-- Profielfoto --}}
-     @if($user->profile_photo)
-    <img src="{{ asset('storage/' . $user->profile_photo) }}"
-         alt="Profielfoto"
-         class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
-@else
-    <img src="{{ asset('images/avatar.jpg') }}"
-         alt="Standaard profielfoto"
-         class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
-@endif
-
+            {{-- Profielfoto --}}
+            @if($user->profile_photo)
+              <img src="{{ asset('storage/' . $user->profile_photo) }}"
+                   alt="Profielfoto"
+                   class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+            @else
+              <img src="{{ asset('images/avatar.jpg') }}"
+                   alt="Standaard profielfoto"
+                   class="w-32 h-32 rounded-full object-cover ring-2 ring-gray-300 shadow mx-auto">
+            @endif
 
             {{-- Naam --}}
             <h2 class="font-semibold text-lg text-gray-800">
@@ -41,14 +39,19 @@
               </a>
             </h2>
 
-            {{-- Korte bio --}}
+            {{-- Korte beschrijving (Over mij) --}}
             @if($user->bio)
               <p class="text-sm text-gray-600 line-clamp-3">
-                {{ Str::limit($user->bio, 80) }}
+                <strong>Over mij:</strong> {{ Str::limit($user->bio, 80) }}
               </p>
             @else
-              <p class="text-sm text-gray-400 italic">Geen bio beschikbaar</p>
+              <p class="text-sm text-gray-400 italic">wil je meer over mij weten klik hier onder</p>
             @endif
+
+            {{-- Meer informatie link --}}
+            <p class="text-sm text-blue-600 hover:underline">
+              <a href="{{ route('users.show', $user) }}">Klik hier voor meer informatie</a>
+            </p>
           </div>
         @endforeach
       </div>
