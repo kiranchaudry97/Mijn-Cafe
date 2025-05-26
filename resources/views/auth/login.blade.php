@@ -8,6 +8,9 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+  {{-- Navigatie --}}
+  @include('partials.nav')
+
   @php $admin = request()->query('admin'); @endphp
 
   <div class="min-h-screen flex items-center justify-center">
@@ -18,15 +21,15 @@
 
       <x-auth-session-status class="mb-4" :status="session('status')" />
 
-      <form method="POST" action="{{ route('login') }}">@csrf
+      <form method="POST" action="{{ route('login') }}">
+        @csrf
         @if($admin)
           <input type="hidden" name="admin" value="1">
         @endif
 
         <div class="mb-4">
           <label class="block font-semibold mb-1">Email</label>
-          <input type="email" name="email" value="{{ old('email') }}" required autofocus
-                 class="w-full border rounded p-2">
+          <input type="email" name="email" value="{{ old('email') }}" required autofocus class="w-full border rounded p-2">
           <x-input-error :messages="$errors->get('email')" class="mt-1 text-red-600"/>
         </div>
 
@@ -49,11 +52,20 @@
           @endif
           <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Log in</button>
         </div>
+
+        @unless($admin)
+        <div class="text-center mt-4">
+          <p class="text-sm text-gray-600">
+            Nog geen account?
+            <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Maak er één aan</a>
+          </p>
+        </div>
+        @endunless
       </form>
     </div>
   </div>
 
   {{-- Footer --}}
-@include('partials.footer')
+  @include('partials.footer')
 </body>
 </html>
