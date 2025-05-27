@@ -204,7 +204,7 @@ User::create([
 
 
 
-  E-mail: admin@ehb.be
+  E-mail: login@ehb.be
 
 Wachtwoord: Password!321
 
