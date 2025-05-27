@@ -40,6 +40,27 @@ Gebruikers kunnen inloggen, hun profiel beheren, bestellingen plaatsen en vragen
 # Functionaliteiten
 ###implementatie van Technishe Vereisten
 
+##foto's
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/layouts.png)
+
+##extends layouts bij contact en faq
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/layouts_extensio_contact.png)
+
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/layouts_extension.png)
+
+##models
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/models.png)
+
+##partials gebruikt voor footer en nav en aparte voor admin nav
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/partiasl_nav_footer.png)
+## profile live weergeven
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/profile%20live%20te%20kunnen%20weergeven.png)
+
+#csfr en methode gebruikt zoals post , get , delete, enzo 
+
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/7b4cf8916ee914a05d820b0bee5a340d34c28e51/Afbeeldingen%20project%20backend/codes/put.png)
+
+
 ##Views & Blade
 
 ###Twee layouts
