@@ -223,276 +223,137 @@ Wachtwoord: Password!321
 
 # Afbeeldingen 
 ## Hoofd pagina
-# inhoud welkom bericht met menu en de item die ze kunnen bestellen.
+### inhoud welkom bericht met menu en de item die ze kunnen bestellen.
 
- ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20page%20.png)
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/menupagina/menu.png)
 # veelgestelde vragen kunnen weergeven
  
- ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20inhoud%20veelgestelde%20vragen%20page%20.png)
-# Veelgestelde vragen kunne stellen
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20en%20vraagstelling%20page%20.png)
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/faq/heb%20je%20een%20vraag.png)
+   ![image alt]( 
+https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/homepagina/nieuwbeheer.png)
+
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/homepagina/veelgestelde_vragen.png)
+
+   
+   ![image alt]()
 
 # Menu pagina 
- ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/menu%20pagina.png)
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/contact/contact.png)
  
 # Contactinfo pagina
   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20info%20pagina%20.png)
  
-# formulier kunnen versturen 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20info%20pagina%20met%20het%20verzenden%20van%20bericht%20.png)
+##GebruikersProfielen
 
-# Admin login
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/gebruikersprofielen/gebruikers.png)
+
+###Gebruikers info
+
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/gebruikersprofielen/gebruikersinfo.png)
+
+## log 
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log.png)
+
+ ## gebruikers/Admin
+
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/gebuikers%20logegevens.png)
+
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/log%20admin.png)
+
+
+
+ ![image alt]()
+
+
+## Admin/Gebruikes Dashboard
  
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/login%20als%20admin%20.png)
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/admin%20dashboard.png)
 
-# Admin dashboard
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/admin%20dashboard.png)
+ ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/dashboard.png)
 
-# Admin kunnen nieuws beheer kunnen weergeven  en kunnen toevoegen 
- 
-   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuws%20beheer%20toegevoegd%20kunnen%20weergeven.png)
-    ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuws%20beheer%20kunnen%20aanmaken%20.png)
-     
+### Admin Faqbeheer
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/faqbeheer.png)
 
-# Admin user gebruikers kunnen weergeven  en zich kunnen aanpassen
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/admin%20users%20gebruikes%20kunnen%20weergeven.png)
+### Admin Faq aanmaken
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/faqaanmaken.png)
+  
+### Admin nieuws beheer
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/beheernieuws.png)
+  
+### Admin gebruikers beheren
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/gebruikerbeheren.png) 
 
+### Admin gebruikersprofielen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/gebruikersprofielen.png)
 
-# Admin kunnen bestelling zien van de gebruikers 
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/winkelmand%20het%20gescelecteerde%20product.png)
+  
+### Admin contact inzendingen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/inzendingen.png)  
 
+### Admin Reactiebeheer
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/admin/reactie%20beheer.png)  
 
+### Bestellingen aanmaken
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/bestel/bestellingen%20aanmaken.png)  
 
-# admin kunnen contact inzeddingen zien 
- 
+### Bestellingen 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/bestel/bestellingen.png)  
+  
 
 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/contact%20inzeidingen%20kunnen%20bekijken.png)
+### profile bewereken
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/profile%20bewerken/bewerking.png)  
 
 
+ ### wachtwoord wijzigen of account verwijderen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/profile%20bewerken/wachtwoord%20gegevens.png)  
 
+### mailtrap notifactie van herstel link 
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/mailtrap/mailtrap%20van%20wachtwoord%20vergeten%20link.jpg)    
 
-# Als Admin faq pagina kunnen beheren  en kunnen toevoegen en weergeven op de hoofdpagina
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuw%20faq%20item%20kunnen%20toevoegen.png)
 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuw%20faq%20item%20kunnen%20weergeven%20van%20nieuw%20toegevoegde%20item.png)
+![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/logegevens/log%20gebruikers/mailtrap/notificatie%20van%20herstel%20link.jpg)  
 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20faq%20item%20kunnen%20weergeven%20in%20welcome%20page.png)
 
+### testing Faq
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/Faq_test_aanmaken.png)  
 
-# log gegevens van gebruiker 
-   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/login%20als%20admin%20.png)
 
 
-# gebruikers dashboard 
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/gebruikers%20dashboard%20overzicht.png)
-# gebruikers hun profile kunnen wijzigen 
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/gebruikers%20kunnen%20wijzigen.png)
+### testing profile bewereken
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/Profile_test_aanpassen.png)  
 
+### testing gebruikers aanmaken
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/Test_gebruikers_aanmaken_admin%20.png)  
 
-# bestellingen kunnen nemen via de mijn bestelling 
-   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20bestelling%20page%20de%20bestelling%20kunnen%20aanmaken.png)
+### testing amin rechten aanpassen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/admin_rechten_aanpassen.png)  
 
-# nieuwe gebruikers kunnen aanmaken 
-   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/nieuwe%20gebruikers%20aanmaken.png)
 
-# profile kunnen bewereken als admin 
- 
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/profile%20%20page%20ingeven%20van%20gegevens.png)
-# wacthwoord kunnen wjizingen of account kunnen vewijderen
-  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/profile%20page%20wachtwoord%20kunnen%20wijzingen%20of%20account%20verwijderen.png)
+### testing bestellingen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/test_bestellingen.png)  
 
 
+### testing contact inzendingen
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/contactverzenden_test.png)  
 
 
+### testing gebruikers verwijderen ( er waren in begin kijk boven 5)
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/test_gebruikers_verwijderen.png)  
 
 
+### testing niewsbeheer
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/test_nieuwsbeheer.png)  
 
+### testing reactie
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/test_reactie.png)  
 
-=======
 
-### FAQ-beheer
-- *Adminbeheer:* beheer van categorieën en Q&A.
-- *FAQ’s zichtbaar op homepage* gegroepeerd per categorie.
-- *Bezoekers kunnen vragen insturen*, zichtbaar voor admin in dashboard.
 
----
+### testing verwijderen van faq
+  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/Nieuwe%20map/test_verwijderen_faq_item.png)  
 
-## Installatie
 
-1. *Clone deze repository:*
 
-   ```bash
-   git clone https://github.com/kiranchaudry97/Mijn-Cafe.git
-   cd Mijn-Cafe
-
-# Afbeeldingen 
-# Hoofd pagina
-# inhoud welkom bericht met menu en de item die ze kunnen bestellen.
-![welcom-pagina](image-1.png)
- 
-# veelgestelde vragen kunnen weergeven
- 
-
-#Veelgestelde vragen kunne stellen
- 
-
-#Menu pagina 
- 
-#Contactinfo pagina
- 
-
-#formulier kunnen versturen 
- 
-
-#Admin login
- 
-
-
-
-
-
-
-
-#Admin dashboard
- 
-
-
-
-
-
-
-#Admin kunnen nieuws beheer kunnen weergeven  en kunnen toevoegen 
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-#Admin user gebruikers kunnen weergeven  en zich kunnen aanpassen
- 
-
-
-
-
-
-
-
-
-
-
-#Admin kunnen bestelling zien van de gebruikers 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#admin kunnen contact inzeddingen zien 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Als Admin faq pagina kunnen beheren  en kunnen toevoegen en weergeven op de hoofdpagina
- 
-
-
- 
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#log gegevens van gebruiker 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#gebruikers dashboard 
- 
-
-#gebruikers hun profile kunnen wijzigen 
- 
-
-
-
-
-
-
-
-#bestellingen kunnen nemen via de mijn bestelling 
- 
-
-#nieuwe gebruikers kunnen aanmaken 
- 
-
-#profile kunnen bewereken als admin 
- 
-
-#wacthwoord kunnen wjizingen of account kunnen vewijderen
- 
-
-
-[def]: image.png
->>>>>>> Stashed changes
+  
+  
