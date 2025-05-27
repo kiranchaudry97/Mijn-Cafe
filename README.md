@@ -27,10 +27,114 @@ Mijn Café is een full-stack Laravel webapplicatie gebouwd als eindproject voor 
 
 Gebruikers kunnen inloggen, hun profiel beheren, bestellingen plaatsen en vragen stellen via het contactformulier of FAQ. Admins hebben extra rechten zoals het beheren van gebruikers, het toekennen van adminrechten, het verwerken van contactberichten, het beheren van FAQ’s en het aanmaken van nieuwsitems die op de homepage verschijnen.
 
+## Hoofuncties
+- Gebruikersauthenticatie: inloggen, registreren, wachtwoord reset, ‘remember me’
+- User Roles: gewone gebruiker & admin, met adminmogelijkheden (promoveren/degraderen, manueel aanmaken)
+- Profielpagina’s: publieke profiellijst, bewerken eigen profiel (username, profielfoto, verjaardag, "over mij")
+- Nieuwsitems: lijst en detail, admin CRUD (Titel, Afbeelding, Content, Publicatiedatum)
+- FAQ-pagina: vragen en antwoorden per categorie, admin CRUD
+- Contactformulier: aanvragen via formulier, e-mailnotificatie naar admin, admin-overzicht
 ---
 
 <<<<<<< Updated upstream
 # Functionaliteiten
+###implementatie van Technishe Vereisten
+
+##Views & Blade
+
+###Twee layouts
+
+- resources/views/layouts/app.blade.php (regels 1–80): hoofdlayout voor ingelogde gebruikers
+
+- resources/views/layouts/guest.blade.php (regels 1–50): layout voor niet-ingelogde bezoekers
+
+##Componenten
+
+- resources/views/components/navbar.blade.php (regels 1–30)
+
+- resources/views/components/footer.blade.php (regels 1–20)
+
+##Routes
+
+- Alle routes via controllers
+
+- routes/web.php (regels 10–75): publiek
+
+- routes/admin.php (regels 1–60): admin (prefix admin, middleware auth,verified)
+
+  ##Middleware
+
+- Route::middleware(['auth'])->group(...) rond profiel- en admin-routes
+
+##Controllers & Models
+
+###Resource Controllers
+
+- app/Http/Controllers/Admin/NewsController.php (CRUD, regels 1–120)
+
+- app/Http/Controllers/FaqController.php (regels 1–100)
+
+###Modulaire controllers
+
+- app/Http/Controllers/ProfileController.php (regels 1–80)
+
+###Eloquent Models
+
+- app/Models/User.php (relaties met profiel, nieuwsfavorieten)
+
+- app/Models/News.php (belongsTo(User::class), regels 25–35)
+
+- app/Models/FaqCategory.php (hasMany(Faq::class), regels 15–25)
+
+##Database
+
+###Migrations
+
+- database/migrations/2025_01_10_000000_create_users_table.php (toegevoegd is_admin, avatar, birthday)
+
+- database/migrations/2025_02_05_000000_create_news_table.php (velden: title, image_path, content, published_at)
+
+- database/migrations/2025_02_20_000000_create_faq_tables.php (faq_categories en faqs)
+
+###Seeders
+
+ - database/seeders/DatabaseSeeder.php (registreert UserSeeder, FaqSeeder, NewsSeeder)
+
+###Security
+
+- CSRF Bescherming
+
+- Overal in Blade-formulieren @csrf (zoek in resources/views)
+
+### XSS Bescherming
+
+- Output in Blade ge-escaped met {{ }} (bijv. in news/show.blade.php regel 45)
+
+### Client-side Validatie
+
+- HTML5 Validatie: required, type="email", pattern in formuliervelden (resources/views/contact.blade.php regels 12–40)
+
+- Optioneel: Vue.js voor live validatie (npm-pakket geïnstalleerd in package.json)
+
+###Authentication
+
+- Auth::routes() in routes/web.php (regel 7)
+
+- Standaard functionaliteiten: login, register, password reset (controller in vendor/laravel/ui)
+
+- Default Admin
+
+- Voeg toe in database/seeders/UserSeeder.php (regel 15–25) met:
+
+User::create([    
+    'name' => 'admin',
+    'email' => 'admin@ehb.be',
+    'password' => Hash::make('Password!321'),
+    'is_admin' => true,
+]);
+
+
+
 
 # Algemene functies
 =======
@@ -40,7 +144,7 @@ Gebruikers kunnen inloggen, hun profiel beheren, bestellingen plaatsen en vragen
 >>>>>>> Stashed changes
 - *Homepage met dynamische inhoud:* toont koffiesoorten (met afbeelding), recente nieuwsitems en veelgestelde vragen.
 - *Contactformulier:* bezoekers kunnen berichten sturen; admins ontvangen deze via e-mail.
-- *Publieke profielpagina’s:* elke gebruiker heeft een publiek profiel met foto, bio en info.
+- *Publieke profielpagina’s:* elke gebruiker heeft een publiek profiel met foto, bio en info en kunnen wijzigen van hun profielen en zelfs de admin kan rechten op geven of ze admin rechten hebben.
 
 <<<<<<< Updated upstream
 # Authenticatie & Gebruikersbeheer
@@ -88,8 +192,37 @@ Gebruikers kunnen inloggen, hun profiel beheren, bestellingen plaatsen en vragen
    git clone https://github.com/kiranchaudry97/Mijn-Cafe.git
    cd Mijn-Cafe
 
+3. * Dependencies installeren
+     composer install
+     npm install
+    npm run build
+
+
+### logegevens 
+* E-mail: admin@ehb.be
+* Wachtwoord: Password!321
+
+
+
+  E-mail: admin@ehb.be
+
+Wachtwoord: Password!321
+
+## Gebruikte Bronnen
+* chatgtp : gebruikt vooral ik had problemen gehad met symlink en storage van het uploaden van afbeeldingen en het bewaren maar dit was niet gelukt, zelf moeten opzoeken van deze bron : https://stackoverflow.com/questions/68124304/laravel-8-symbolic-link-not-appearing-in-public#:~:text=So%20when%20you%20run%20php%20artisan%20storage%3Alink%20it,your%20public%20folder%20and%20delete%20the%20storage%20folder. en youtube werd een notatie getoond bij de web router zo heb ik dit zo geplaats Route::get('/storage-link', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = public_path('storage');
+
+    if (!file_exists($linkFolder)) {
+        symlink($targetFolder, $linkFolder);
+        return 'Symlink succesvol aangemaakt!';
+    }
+
+  
+
+
 # Afbeeldingen 
-# Hoofd pagina
+## Hoofd pagina
 # inhoud welkom bericht met menu en de item die ze kunnen bestellen.
 
  ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/3dfef042ced5bd9cd539ba024e8f343332bbe211/Welcome%20page%20.png)
