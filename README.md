@@ -234,6 +234,10 @@ https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3
 
    ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/9571c2d1188559d687903f5a64a5df3302bd61a4/Afbeeldingen%20project%20backend/homepagina/veelgestelde_vragen.png)
 
+   #nieuwbeheer
+   ![image alt](https://github.com/kiranchaudry97/Mijn-Cafe/blob/e23d81d44c7e3342550cdea330d9db755abf953f/Afbeeldingen%20project%20backend/homepagina/update_nieuwsbeheer_verschijnen.png)
+   
+
    
    ![image alt]()
 
